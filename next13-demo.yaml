@@ -1,0 +1,40 @@
+# Next13 Demo Service
+apiVersion: v1
+kind: Service
+metadata:  
+  name: next13-demo
+  labels:
+    app: next13-demo
+    service: next13-demo
+spec:
+  ports:
+  - port: 3000
+    name: http
+  selector:
+    app: next13-demo
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: next13-demo-v1
+  labels:
+    app: next13-demo
+    version: v1
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: next13-demo
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: next13-demo
+        version: v1
+    spec:
+      containers:
+      - name: next13-demo
+        image: gcr.io/playground-yeoul-kim-b12d/next13-demo@sha256:dcfdd7f3d5740cbf95adf5481e7346957cc6a6d7af73945e1ebb48d0a0afa5e3
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 3000
