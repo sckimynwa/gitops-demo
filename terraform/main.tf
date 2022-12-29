@@ -8,7 +8,7 @@ terraform {
 }
 
 # module.gke.google_container_cluster.primary:
-resource "google_container_cluster" "cluster-yeoul2" {
+resource "google_container_cluster" "cluster-yeoul" {
     datapath_provider           = "LEGACY_DATAPATH"
     default_max_pods_per_node   = 110
     enable_intranode_visibility = false
@@ -18,7 +18,7 @@ resource "google_container_cluster" "cluster-yeoul2" {
     enable_tpu                  = false
     initial_node_count          = 0
     location                    = "asia-northeast3-c"
-    name                        = "cluster-yeoul2"
+    name                        = "cluster-yeoul"
     network                     = "projects/playground-yeoul-kim-b12d/global/networks/default"
     networking_mode             = "VPC_NATIVE"
     node_version                = "1.24.7-gke.900"
