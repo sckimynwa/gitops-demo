@@ -11,4 +11,4 @@ Simple Cluster with nextjs webserver, spring api server and istio ingress gatewa
 
 ### helm
 
-`$ cd helm/charts/autoconfig && ./autoconfig.sh`
+`$ ./setup.sh`

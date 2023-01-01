@@ -33,9 +33,21 @@ helm install next13-demo next13-demo
 
 echo "\n${Green}4. Argo CD Setting ${Nc}\n"
 # if not installed, add repo first
-# helm repo add argo https://argoproj.github.io/argo-helm
-# helm repo update
-# helm install argo argo/argo-cd -n argo-cd -f ./argo-cd/values.yaml --wait
+kubectl create namespace argocd
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
+
+argocd app create next13-demo \
+ --repo https://github.com/sckimynwa/gitops-demo.git \
+ --path next13-demo \
+ --dest-server https://kubernetes.default.svc \
+ --dest-namespace default
+
+# argocd app create kopring-demo \
+#  --repo https://github.com/sckimynwa/gitops-demo.git \
+#  --path kopring-demo \
+#  --dest-server https://kubernetes.default.svc \
+#  --dest-namespace default
 
 echo "\n${Green}5. Grafana Setting ${Nc}\n"
 
