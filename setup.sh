@@ -37,4 +37,9 @@ echo "\n${Green}4. Argo CD Setting ${Nc}\n"
 # helm repo update
 # helm install argo argo/argo-cd -n argo-cd -f ./argo-cd/values.yaml --wait
 
+echo "\n${Green}5. Grafana Setting ${Nc}\n"
+
+kubectl apply -f ./grafana/prometheus.yaml
+kubectl apply -f ./grafana/grafana.yaml
+
 echo "\n${Yello} Setup Finished. ${Nc}\n"
