@@ -37,6 +37,10 @@ kubectl create namespace argocd
 kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
 
+# get argocd password
+kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath={.data.password}
+
+# after login & create app
 argocd app create next13-demo \
  --repo https://github.com/sckimynwa/gitops-demo.git \
  --path next13-demo \
