@@ -20,14 +20,16 @@ gcloud container clusters get-credentials cluster-yeoul --region asia-northeast3
 
 echo "\n${Green}2. Istio Setting ${Nc}\n"
 
+# https://istio.io/latest/docs/setup/getting-started/
+export PATH=$PWD/istio:$PATH
 istioctl install --set profile=default -y
 kubectl label namespace default istio-injection=enabled
+kubectl apply -f ./istio/gateway.yaml
 
 echo "\n${Green}3. Application Setting ${Nc}\n"
 
-kubectl apply -f ./apps/kopring-demo.yaml
-kubectl apply -f ./apps/next13-demo.yaml
-kubectl apply -f ./istio/gateway.yaml
+helm install next13-demo next13-demo
+# helm install kopring-demo kopring-demo
 
 echo "\n${Green}4. Argo CD Setting ${Nc}\n"
 # if not installed, add repo first
