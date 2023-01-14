@@ -14,16 +14,17 @@ Nc='\033[0m'
 echo "${Yello} Setup Start. ${Nc}\n"
 
 echo "${Green}1. Gcloud Container ${Nc}\n"
-# gcloud auth login
-# gcloud auth application-default login
+gcloud auth application-default login
 gcloud container clusters get-credentials cluster-yeoul --region asia-northeast3-c
 
 echo "\n${Green}2. Istio Setting ${Nc}\n"
+kubectl create namespace istio-system
+helm install istio-base istio/base -n istio-system 
+helm install istiod istio/istiod -n istio-system --wait
 
-# https://istio.io/latest/docs/setup/getting-started/
-export PATH=$PWD/istio:$PATH
-istioctl install --set profile=default -y
-kubectl label namespace default istio-injection=enabled
+kubectl create namespace istio-ingress
+kubectl label namespace istio-ingress istio-injection=enabled
+helm install istio-ingress istio/gateway -n istio-ingress --wait
 kubectl apply -f ./istio/gateway.yaml
 
 echo "\n${Green}3. Application Setting ${Nc}\n"

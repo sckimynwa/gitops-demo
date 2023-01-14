@@ -3,6 +3,7 @@ apiVersion: autoscaling/v2beta1
 kind: HorizontalPodAutoscaler
 metadata:
   name: {{ include "next13-demo.fullname" . }}
+  namespace: next13-demo
   labels:
     {{- include "next13-demo.labels" . | nindent 4 }}
 spec:

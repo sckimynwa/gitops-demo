@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ include "next13-demo.fullname" . }}
+  namespace: next13-demo
   labels:
     {{- include "next13-demo.labels" . | nindent 4 }}
 spec:
