@@ -3,7 +3,7 @@ replicaCount: 2
 image:
   repository: gcr.io/playground-yeoul-kim-b12d/next13-demo
   pullPolicy: IfNotPresent
-  tag: "0afc08c2224f5fca23de12b65c282f0d16664ded"
+  tag: "6ef7af66849475cd46063bed8165602386ea52a0"
 
 imagePullSecrets: []
 nameOverride: ""
