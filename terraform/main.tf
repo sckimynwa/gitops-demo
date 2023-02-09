@@ -21,8 +21,8 @@ resource "google_container_cluster" "cluster-yeoul" {
     name                        = "cluster-yeoul"
     network                     = "projects/playground-yeoul-kim-b12d/global/networks/default"
     networking_mode             = "VPC_NATIVE"
-    node_version                = "1.24.7-gke.900"
-    min_master_version		    = "1.24.7-gke.900"
+    node_version                = "1.24.8-gke.2000"
+    min_master_version		    = "1.24.8-gke.2000"
     project                     = "playground-yeoul-kim-b12d"
     resource_labels             = {}
     subnetwork                  = "projects/playground-yeoul-kim-b12d/regions/asia-northeast3/subnetworks/default"
@@ -99,7 +99,7 @@ resource "google_container_cluster" "cluster-yeoul" {
         max_pods_per_node           = 110
         name                        = "default-pool"
         node_count                  = 3
-        version                     = "1.24.7-gke.900"
+        version                     = "1.24.8-gke.2000"
 
         autoscaling {
             max_node_count = 1
