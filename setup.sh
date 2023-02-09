@@ -29,8 +29,13 @@ kubectl apply -f ./istio/gateway.yaml
 
 echo "\n${Green}3. Application Setting ${Nc}\n"
 
+# TODO: Comment
+kubectl create namespace kong-gateway
+kubectl apply -k ./kong-gateway
+
 helm install next13-demo next13-demo
 # helm install kopring-demo kopring-demo
+
 
 echo "\n${Green}4. Argo CD Setting ${Nc}\n"
 # if not installed, add repo first

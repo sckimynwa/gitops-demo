@@ -1,0 +1,10 @@
+_format_version: "3.0"
+
+services:
+- name: next13-demo
+  url: http://next13-demo.next13-demo.svc.cluster.local
+  routes:
+  - name: next13-demo
+    paths:
+    - /
+    
